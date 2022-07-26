@@ -3,9 +3,27 @@ package controllers
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 )
+
+type Form struct {
+	Nome     string `form:"nome"`
+	Email    string `form:"email"`
+	Telefone string `form:"telefone"`
+}
+
+func NewForm(c *gin.Context) {
+	var form Form
+	if err := c.ShouldBind(&form); err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(form)
+	c.Redirect(http.StatusFound, "https://www.google.com")
+}
 
 var ctx = context.Background()
 

@@ -3,6 +3,7 @@ package router
 import (
 	"net/http"
 
+	"github.com/ericklima-ca/formx/controllers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,6 +32,7 @@ func NewRouter(pathToStatic string) *gin.Engine {
 		v1.GET("/ping", func(c *gin.Context) {
 			c.String(http.StatusOK, "pong")
 		})
+		v1.POST("/form_post", controllers.NewForm)
 	}
 	return router
 }
