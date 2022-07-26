@@ -18,7 +18,7 @@ type Router interface {
 func NewRouter(pathToStatic string) *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob(pathToStatic + "/**/*.html")
-	// router.Static("/assets", pathToStatic+"/assets/")
+	router.Static("/assets", pathToStatic+"/assets/")
 
 	v1 := router.Group("/api/v1")
 	{
