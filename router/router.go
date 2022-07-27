@@ -21,7 +21,7 @@ func NewRouter(pathToStatic string) *gin.Engine {
 	router.LoadHTMLGlob(pathToStatic + "/**/*.html")
 	router.Static("/assets", pathToStatic+"/assets/")
 
-	v1 := router.Group("/api/v1")
+	v1 := router.Group("/v1")
 	{
 		v1.GET("/", func(c *gin.Context) {
 			c.HTML(http.StatusOK, "index.html", gin.H{
