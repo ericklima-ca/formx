@@ -16,10 +16,10 @@ type Router interface {
 	ServeHTTP(http.ResponseWriter, *http.Request)
 }
 
-func NewRouter(pathToStatic string) *gin.Engine {
+func NewRouter() *gin.Engine {
 	router := gin.Default()
-	router.LoadHTMLGlob(pathToStatic + "/**/*.html")
-	router.Static("/assets", pathToStatic+"/assets/")
+	router.LoadHTMLGlob("static/**/*.html")
+	router.Static("/assets", "static/assets/")
 
 	v1 := router.Group("/v1")
 	{

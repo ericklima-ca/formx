@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	router := router.NewRouter("./static")
+	router := router.NewRouter()
 
 	srv := &http.Server{
 		Addr:    ":8080",
