@@ -9,10 +9,11 @@ import (
 )
 
 func TestPingRoute(t *testing.T) {
+	Init()
 	router := setupRouter()
 
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest(http.MethodGet, "/api/v1/ping", nil)
+	req, _ := http.NewRequest(http.MethodGet, "/v1/ping", nil)
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, http.StatusOK, w.Code)
