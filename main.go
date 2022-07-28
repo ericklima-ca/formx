@@ -10,11 +10,38 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/ericklima-ca/formx/controllers"
+	"github.com/ericklima-ca/formx/pdf_generator"
 	"github.com/ericklima-ca/formx/router"
+	"github.com/ericklima-ca/formx/services"
+	"github.com/joho/godotenv"
 )
 
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
 func main() {
-	router := router.NewRouter()
+	var (
+		EMAIL_ADDR = os.Getenv("EMAIL_ADDR")
+		EMAIL_PASS = os.Getenv("EMAIL_PASS")
+		HOST_SMTP  = os.Getenv("HOST_SMTP")
+	)
+
+	ms := services.MailerService{
+		HostPort: HOST_SMTP,
+		User:     EMAIL_ADDR,
+		Passcode: EMAIL_PASS,
+	}
+
+	controller := controllers.Controller{
+		Mailer:       ms,
+		PDFGenerator: pdf_generator.PDFGenerator{},
+	}
+	router := router.NewRouter(controller)
 
 	srv := &http.Server{
 		Addr:    ":8080",

@@ -3,20 +3,14 @@ package router
 import (
 	"net/http"
 
-	"github.com/ericklima-ca/formx/controllers"
 	"github.com/gin-gonic/gin"
 )
 
-var data = []gin.H{
-	{"Name": "Erick", "Value": 1},
-	{"Name": "Amorim", "Value": 2},
+type controller interface {
+	NewForm(*gin.Context)
 }
 
-type Router interface {
-	ServeHTTP(http.ResponseWriter, *http.Request)
-}
-
-func NewRouter() *gin.Engine {
+func NewRouter(c controller) *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob("static/**/*.html")
 	router.Static("/assets", "static/assets/")
@@ -25,14 +19,13 @@ func NewRouter() *gin.Engine {
 	{
 		v1.GET("/", func(c *gin.Context) {
 			c.HTML(http.StatusOK, "index.html", gin.H{
-				"PageTitle": "Hello World",
-				"Data":      data,
+				"title": "New Form",
 			})
 		})
 		v1.GET("/ping", func(c *gin.Context) {
 			c.String(http.StatusOK, "pong")
 		})
-		v1.POST("/form_post", controllers.NewForm)
+		v1.POST("/form_post", c.NewForm)
 	}
 	return router
 }

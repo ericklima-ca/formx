@@ -1,6 +1,7 @@
 package pdf_generator
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -10,18 +11,21 @@ import (
 	"github.com/johnfercher/maroto/pkg/props"
 )
 
-type data interface {
+type Data interface {
 	GetData() [][]string
+	GetName() string
 }
 
-func BuildPDF(seed data) {
+type PDFGenerator struct{}
+
+func (_pdf PDFGenerator) BuildPDF(seed Data) {
 	m := pdf.NewMaroto(consts.Portrait, consts.A4)
 	m.SetPageMargins(20, 10, 20)
 
 	buildHeading(m)
 	buildDataList(m, seed)
-
-	err := m.OutputFileAndClose("./temp/_tmp.pdf")
+	filename := fmt.Sprintf("%s.pdf", seed.GetName())
+	err := m.OutputFileAndClose("./temp/" + filename)
 	if err != nil {
 		log.Println("⚠️  Could not save PDF:", err)
 		os.Exit(1)
@@ -42,7 +46,7 @@ func buildHeading(m pdf.Maroto) {
 	})
 }
 
-func buildDataList(m pdf.Maroto, seed data) {
+func buildDataList(m pdf.Maroto, seed Data) {
 	tableHeadings := []string{"Field", "Value"}
 	// contents := [][]string{
 	// {"Name", "Amorim S/A"},
