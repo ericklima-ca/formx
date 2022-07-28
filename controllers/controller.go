@@ -31,17 +31,23 @@ func (cc Controller) NewForm(c *gin.Context) {
 	}
 	cc.PDFGenerator.BuildPDF(form)
 
-	jsonBytes, errJson := json.Marshal(gin.H{
+	jsonBytes, err := json.Marshal(gin.H{
 		"To":       form.Email,
 		"Subject":  "Form from " + form.Name,
 		"Body":     "Data submitted by " + form.Name,
 		"Customer": form.Name,
 	})
-	if errJson != nil {
-		log.Fatal(errJson)
+	if err != nil {
+		log.Fatal(err)
 	}
 	cc.Mailer.SendMail(jsonBytes)
 
 	// TO BE IMPLEMENTED
 	c.Redirect(http.StatusFound, "https://www.google.com")
+}
+
+func (cc Controller) ServeStatic(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"title": "New Form",
+	})
 }
