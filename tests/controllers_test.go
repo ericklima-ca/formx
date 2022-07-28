@@ -1,9 +1,12 @@
 package tests
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"os"
 	"strings"
 	"testing"
 
@@ -11,7 +14,21 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestFormPost(t *testing.T) {
+func TestServeStatic(t *testing.T) {
+	Init()
+	router := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, err := http.NewRequest(http.MethodGet, "/v1/", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	router.ServeHTTP(w, req)
+	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestNewForm(t *testing.T) {
 	Init()
 	router := setupRouter()
 	formMock := models.Form{
@@ -28,7 +45,9 @@ func TestFormPost(t *testing.T) {
 	req, _ := http.NewRequest(http.MethodPost, "/v1/form_post", query)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	router.ServeHTTP(w, req)
+	path_name := fmt.Sprintf("./temp/%s.pdf", formMock.Name)
+	defer os.Remove(path_name)
 
 	assert.Equal(t, http.StatusFound, w.Code, "Fail to get success in form")
-	assert.FileExists(t, "./temp/_tmp.pdf", "Fail to save file!")
+	assert.FileExists(t, path_name, "Fail to save file!")
 }
