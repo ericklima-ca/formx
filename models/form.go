@@ -26,3 +26,7 @@ func (f Form) GetData() [][]string {
 	}
 	return listString
 }
+
+func (f Form) GetName() string {
+	return f.Name
+}
