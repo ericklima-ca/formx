@@ -1,76 +1,86 @@
 <!-- <div class="form"> -->
-    <!-- <form> -->
-        <!-- <fieldset> -->
-            <!-- <label for="nameField">Name</label> -->
-            <!-- <input type="text" placeholder="CJ Patoilo" id="nameField"> -->
-            <!-- <label for="ageRangeField">Age Range</label> -->
-            <!-- <select id="ageRangeField"> -->
-                <!-- {{ range .Data }} -->
-                <!-- <option value="{{ .Value }}">{{ .Name }}</option> -->
-                <!-- {{ end }} -->
-            <!-- </select> -->
-            <!-- <label for="commentField">Comment</label> -->
-            <!-- <textarea placeholder="Hi CJ …" id="commentField"></textarea> -->
-            <!-- <div class="float-right"> -->
-                <!-- <input type="checkbox" id="confirmField"> -->
-                <!-- <label class="label-inline" for="confirmField">Send a copy to yourself</label> -->
-            <!-- </div> -->
-            <!-- <input class="button-primary" type="submit" value="Send"> -->
-        <!-- </fieldset> -->
-    <!-- </form> -->
+<!-- <form> -->
+<!-- <fieldset> -->
+<!-- <label for="nameField">Name</label> -->
+<!-- <input type="text" placeholder="CJ Patoilo" id="nameField"> -->
+<!-- <label for="ageRangeField">Age Range</label> -->
+<!-- <select id="ageRangeField"> -->
+<!-- {{ range .Data }} -->
+<!-- <option value="{{ .Value }}">{{ .Name }}</option> -->
+<!-- {{ end }} -->
+<!-- </select> -->
+<!-- <label for="commentField">Comment</label> -->
+<!-- <textarea placeholder="Hi CJ …" id="commentField"></textarea> -->
+<!-- <div class="float-right"> -->
+<!-- <input type="checkbox" id="confirmField"> -->
+<!-- <label class="label-inline" for="confirmField">Send a copy to yourself</label> -->
+<!-- </div> -->
+<!-- <input class="button-primary" type="submit" value="Send"> -->
+<!-- </fieldset> -->
+<!-- </form> -->
 <!-- </div> -->
 <body>
-<div class="box">
-  <form action="/v1/form_post" method="post">
+  <div class="box">
+    <form action="/v1/form_post" method="post">
       <fieldset>
-          <legend> <B>Formulário de Clientes</B> </legend>
-          <br><br>
-          <div class="inputBox">
-              <input type="text" name="name" id="nome" class="inputUser" required>
-              <label for="name" class="labelinput">Nome completo</label>
-          </div>
-          <br><br>
-          <div class="inputBox">
-              <input type="text" name="email" id="email" class="inputUser" required>
-              <label for="email" class="labelinput">E-mail</label>
-          </div>
-          <br><br>
-          <div class="inputBox">
-              <input type="tel" name="phone" id="telefone" class="inputUser" required>
-              <label for="phone" class="labelinput">Telefone</label>
-          </div>
-          <!-- <p>Sexo:</p> -->
-          <!-- <input type="radio" id="feminino" name="genero" value="feminino" required> -->
-          <!-- <label for="feminino">Feminino</label> -->
-          <!-- <br> -->
-          <!-- <input type="radio" id="masculino" name="genero" value="masculino" required> -->
-          <!-- <label for="masculino">Masculino</label> -->
-          <!-- <br> -->
-          <!-- <input type="radio" id="outros" name="genero" value="outros" required> -->
-          <!-- <label for="outros">Outros</label> -->
-          <!-- <br><br> -->
-              <!-- <label for="data_nascimento"><b>Data de Nascimento:</b></label> -->
-              <!-- <input type="date" name="data_nascimento" id="data_nascimento"  required> -->
-          <!-- <br><br><br> -->
-          <!-- <div class="inputBox"> -->
-              <!-- <input type="text" name="cidade" id="cidade" class="inputUser" required> -->
-              <!-- <label for="cidade" class="labelinput">Cidade</label> -->
-          <!-- </div> -->
-          <!-- <br><br> -->
-          <!-- <div class="inputBox"> -->
-              <!-- <input type="text" name="estado" id="estado" class="inputUser" required> -->
-              <!-- <label for="estado" class="labelinput">Estado</label> -->
-          <!-- </div> -->
-          <!-- <br><br> -->
-          <!-- <div class="inputBox"> -->
-              <!-- <input type="text" name="endereco" id="endereco" class="inputUser" required> -->
-              <!-- <label for="endereco" class="labelinput">Endereço</label> -->
-          <!-- </div> -->
-          <!-- <br><br> -->
-          <input type="submit" name="submit" id="submit">
-
+        <legend><b>Formulário de Clientes</b></legend>
+        <br /><br />
+        <div class="inputBox">
+          <input type="text" name="name" id="nome" class="inputUser" required />
+          <label for="name" class="labelinput">Nome completo</label>
+        </div>
+        <br /><br />
+        <div class="inputBox">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="inputUser"
+            required
+          />
+          <label for="email" class="labelinput">E-mail</label>
+        </div>
+        <br /><br />
+        <div class="inputBox">
+          <input
+            type="tel"
+            name="phone"
+            id="telefone"
+            class="inputUser"
+            required
+          />
+          <label for="phone" class="labelinput">Telefone</label>
+        </div>
+        <!-- <p>Sexo:</p> -->
+        <!-- <input type="radio" id="feminino" name="genero" value="feminino" required> -->
+        <!-- <label for="feminino">Feminino</label> -->
+        <!-- <br> -->
+        <!-- <input type="radio" id="masculino" name="genero" value="masculino" required> -->
+        <!-- <label for="masculino">Masculino</label> -->
+        <!-- <br> -->
+        <!-- <input type="radio" id="outros" name="genero" value="outros" required> -->
+        <!-- <label for="outros">Outros</label> -->
+        <!-- <br><br> -->
+        <!-- <label for="data_nascimento"><b>Data de Nascimento:</b></label> -->
+        <!-- <input type="date" name="data_nascimento" id="data_nascimento"  required> -->
+        <!-- <br><br><br> -->
+        <!-- <div class="inputBox"> -->
+        <!-- <input type="text" name="cidade" id="cidade" class="inputUser" required> -->
+        <!-- <label for="cidade" class="labelinput">Cidade</label> -->
+        <!-- </div> -->
+        <!-- <br><br> -->
+        <!-- <div class="inputBox"> -->
+        <!-- <input type="text" name="estado" id="estado" class="inputUser" required> -->
+        <!-- <label for="estado" class="labelinput">Estado</label> -->
+        <!-- </div> -->
+        <!-- <br><br> -->
+        <!-- <div class="inputBox"> -->
+        <!-- <input type="text" name="endereco" id="endereco" class="inputUser" required> -->
+        <!-- <label for="endereco" class="labelinput">Endereço</label> -->
+        <!-- </div> -->
+        <!-- <br><br> -->
+        <input type="submit" name="submit" id="submit" />
       </fieldset>
-  </form>
-
-</div>
-
+    </form>
+  </div>
+</body>
