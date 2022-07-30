@@ -10,6 +10,8 @@ RUN go build -o /formx
 FROM gcr.io/distroless/base-debian11
 LABEL maintainer="Erick Amorim <github.com/ericklima-ca>"
 LABEL maintainer="Daniel Andrade <github.com/danliima>"
-COPY --from=builder /mailmango /mailmango
+COPY --from=builder /formx /formx
+COPY .env.example .env
+COPY static/ static/
 EXPOSE 8080
-ENTRYPOINT ["/mailmango"]
+ENTRYPOINT ["/formx"]
