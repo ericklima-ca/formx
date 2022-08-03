@@ -1,0 +1,20 @@
+{{ template "baseTop" . }}
+<div class="container">
+  <div class="box">
+    <h1>Registro finalizado com sucesso!</h1>
+    <h2>A aba será encerrada em <span id="timer">5</span></h2>
+  </div>
+</div>
+<script>
+  let timer = document.getElementById("timer");
+  let time = 4;
+  setInterval(() => {
+    timer.innerHTML = time;
+    time--;
+  }, 1000);
+  setTimeout(function () {
+    window.close();
+    // window.location.href = "/"
+  }, 5 * 1000);
+</script>
+{{ template "baseBottom" . }}

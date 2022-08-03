@@ -1,3 +1,4 @@
+{{ define "baseTop" }}
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -16,7 +17,7 @@
     <title>{{ .title }}</title>
   </head>
   <body>
-    {{ template "_header.html" }} {{ template "form.html" }} {{ template
-    "_footer.html" }}
+    {{ end }} {{ define "baseBottom" }}
   </body>
 </html>
+{{ end }}

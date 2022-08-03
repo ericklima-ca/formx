@@ -1,25 +1,5 @@
-<!-- <div class="form"> -->
-<!-- <form> -->
-<!-- <fieldset> -->
-<!-- <label for="nameField">Name</label> -->
-<!-- <input type="text" placeholder="CJ Patoilo" id="nameField"> -->
-<!-- <label for="ageRangeField">Age Range</label> -->
-<!-- <select id="ageRangeField"> -->
-<!-- {{ range .Data }} -->
-<!-- <option value="{{ .Value }}">{{ .Name }}</option> -->
-<!-- {{ end }} -->
-<!-- </select> -->
-<!-- <label for="commentField">Comment</label> -->
-<!-- <textarea placeholder="Hi CJ …" id="commentField"></textarea> -->
-<!-- <div class="float-right"> -->
-<!-- <input type="checkbox" id="confirmField"> -->
-<!-- <label class="label-inline" for="confirmField">Send a copy to yourself</label> -->
-<!-- </div> -->
-<!-- <input class="button-primary" type="submit" value="Send"> -->
-<!-- </fieldset> -->
-<!-- </form> -->
-<!-- </div> -->
-<body>
+{{ template "baseTop" . }}
+<div class="container">
   <div class="box">
     <form action="/v1/form_post" method="post">
       <fieldset>
@@ -83,4 +63,5 @@
       </fieldset>
     </form>
   </div>
-</body>
+</div>
+{{ template "baseBottom" . }}
