@@ -42,12 +42,18 @@ func (cc Controller) NewForm(c *gin.Context) {
 	}
 	cc.Mailer.SendMail(jsonBytes)
 
-	// TO BE IMPLEMENTED
-	c.Redirect(http.StatusFound, "https://www.google.com")
+	c.Redirect(http.StatusFound, "/v1/success")
+	log.Println(c.Request.RequestURI)
 }
 
 func (cc Controller) ServeStatic(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", gin.H{
+	c.HTML(http.StatusOK, "form.html", gin.H{
 		"title": "New Form",
+	})
+}
+
+func (cc Controller) ServeSuccess(c *gin.Context) {
+	c.HTML(http.StatusOK, "successForm.html", gin.H{
+		"title": "Success",
 	})
 }
